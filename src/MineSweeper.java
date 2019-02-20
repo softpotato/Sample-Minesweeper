@@ -230,87 +230,89 @@ public class MineSweeper {
 		for (Map.Entry<Integer,HashSet<Integer>> bombEntry : inputBombs.entrySet()) {
 			int xValue = bombEntry.getKey();
 			for (Integer yValue : bombEntry.getValue()) {
-				
-				// TODO: remove
-				//System.out.println("X:" + xValue + " ,Y:" + yValue);
-				
-				field[xValue][yValue] =  -1;
-				
-				boolean leftXBord = xValue == 0;
-				boolean topYBord = yValue == 0;
-				boolean righXBord = xValue == width - 1;
-				boolean botYBord = yValue == height - 1;
-				
-				// Top Left corner of the board, the X and Y values are always the same
-				if (leftXBord && topYBord) {
-					incrementPoint(1,0);
-					incrementPoint(1,1);
-					incrementPoint(0,1);
-					
-				// Bottom left corner of the board, the X value is always the same, but the 
-				// y can only be decremented or kept the same.
-				} else if (leftXBord && botYBord) {
-					incrementPoint(0,yValue - 1);
-					incrementPoint(1,yValue - 1);
-					incrementPoint(1,yValue);
-					
-				// Top right corner of the board, and the y value is always the same, the x however
-				// has to be decremented only to not go over the edge.
-				} else if (righXBord && topYBord) {
-					incrementPoint(xValue,1);
-					incrementPoint(xValue - 1,0);
-					incrementPoint(xValue - 1,1);
-					
-				// Bottom right and left corner of the board.
-				} else if (righXBord && botYBord) {
-					incrementPoint(xValue - 1,yValue - 1);
-					incrementPoint(xValue - 1,yValue);
-					incrementPoint(xValue,yValue - 1);
-					
-				// Left Side only
-				} else if (leftXBord) {
-					incrementPoint(xValue,yValue - 1);
-					incrementPoint(xValue + 1,yValue - 1);
-					incrementPoint(xValue + 1,yValue);
-					incrementPoint(xValue + 1,yValue + 1);
-					incrementPoint(xValue,yValue + 1);
-					
-				// Top Side only
-				} else if (topYBord) {
-					incrementPoint(xValue - 1,yValue);
-					incrementPoint(xValue - 1,yValue + 1);
-					incrementPoint(xValue,yValue + 1);
-					incrementPoint(xValue + 1,yValue + 1);
-					incrementPoint(xValue + 1,yValue);
-					
-				// Right Side only
-				} else if (righXBord) {
-					incrementPoint(xValue,yValue - 1);
-					incrementPoint(xValue - 1,yValue - 1);
-					incrementPoint(xValue - 1,yValue);
-					incrementPoint(xValue - 1,yValue + 1);
-					incrementPoint(xValue,yValue + 1);
-					
-				// Bottom Side only
-				} else if (botYBord) {
-					incrementPoint(xValue - 1,yValue - 1);
-					incrementPoint(xValue - 1,yValue);
-					incrementPoint(xValue,yValue - 1);
-					incrementPoint(xValue + 1,yValue - 1);
-					incrementPoint(xValue + 1,yValue);
-					
-				// General Condition ones
-				} else {
-					incrementPoint(xValue - 1,yValue - 1);
-					incrementPoint(xValue - 1,yValue);
-					incrementPoint(xValue - 1,yValue + 1);
-					incrementPoint(xValue,yValue - 1);
-					incrementPoint(xValue,yValue + 1);
-					incrementPoint(xValue + 1,yValue - 1);
-					incrementPoint(xValue + 1,yValue);
-					incrementPoint(xValue + 1,yValue + 1);
+				if (field[xValue][yValue] != -1) {
+
+					// TODO: remove
+					// System.out.println("X:" + xValue + " ,Y:" + yValue);
+
+					field[xValue][yValue] = -1;
+
+					boolean leftXBord = xValue == 0;
+					boolean topYBord = yValue == 0;
+					boolean righXBord = xValue == width - 1;
+					boolean botYBord = yValue == height - 1;
+
+					// Top Left corner of the board, the X and Y values are always the same
+					if (leftXBord && topYBord) {
+						incrementPoint(1, 0);
+						incrementPoint(1, 1);
+						incrementPoint(0, 1);
+
+						// Bottom left corner of the board, the X value is always the same, but the
+						// y can only be decremented or kept the same.
+					} else if (leftXBord && botYBord) {
+						incrementPoint(0, yValue - 1);
+						incrementPoint(1, yValue - 1);
+						incrementPoint(1, yValue);
+
+						// Top right corner of the board, and the y value is always the same, the x
+						// however
+						// has to be decremented only to not go over the edge.
+					} else if (righXBord && topYBord) {
+						incrementPoint(xValue, 1);
+						incrementPoint(xValue - 1, 0);
+						incrementPoint(xValue - 1, 1);
+
+						// Bottom right and left corner of the board.
+					} else if (righXBord && botYBord) {
+						incrementPoint(xValue - 1, yValue - 1);
+						incrementPoint(xValue - 1, yValue);
+						incrementPoint(xValue, yValue - 1);
+
+						// Left Side only
+					} else if (leftXBord) {
+						incrementPoint(xValue, yValue - 1);
+						incrementPoint(xValue + 1, yValue - 1);
+						incrementPoint(xValue + 1, yValue);
+						incrementPoint(xValue + 1, yValue + 1);
+						incrementPoint(xValue, yValue + 1);
+
+						// Top Side only
+					} else if (topYBord) {
+						incrementPoint(xValue - 1, yValue);
+						incrementPoint(xValue - 1, yValue + 1);
+						incrementPoint(xValue, yValue + 1);
+						incrementPoint(xValue + 1, yValue + 1);
+						incrementPoint(xValue + 1, yValue);
+
+						// Right Side only
+					} else if (righXBord) {
+						incrementPoint(xValue, yValue - 1);
+						incrementPoint(xValue - 1, yValue - 1);
+						incrementPoint(xValue - 1, yValue);
+						incrementPoint(xValue - 1, yValue + 1);
+						incrementPoint(xValue, yValue + 1);
+
+						// Bottom Side only
+					} else if (botYBord) {
+						incrementPoint(xValue - 1, yValue - 1);
+						incrementPoint(xValue - 1, yValue);
+						incrementPoint(xValue, yValue - 1);
+						incrementPoint(xValue + 1, yValue - 1);
+						incrementPoint(xValue + 1, yValue);
+
+						// General Condition ones
+					} else {
+						incrementPoint(xValue - 1, yValue - 1);
+						incrementPoint(xValue - 1, yValue);
+						incrementPoint(xValue - 1, yValue + 1);
+						incrementPoint(xValue, yValue - 1);
+						incrementPoint(xValue, yValue + 1);
+						incrementPoint(xValue + 1, yValue - 1);
+						incrementPoint(xValue + 1, yValue);
+						incrementPoint(xValue + 1, yValue + 1);
+					}
 				}
-				
 			}
 		}
 	}
